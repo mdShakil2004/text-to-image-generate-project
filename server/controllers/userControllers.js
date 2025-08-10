@@ -6,6 +6,7 @@ const jwt= require("jsonwebtoken");
 
 const registerUser=async(req,res)=>{
     const {name,email,password,images}=req.body;
+    console.log("Request body:", req.body);
     if(!name || !email || !password){
         return res.json({ success :false,Message:"all fields are required"});
     }
@@ -26,7 +27,8 @@ const registerUser=async(req,res)=>{
         const userData={
             name,
             email,
-            password:hashedPassword
+            password:hashedPassword,
+            
         }
         const newUser=new userModel(userData);
         const user =   await newUser.save();
